@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Project Eden hardware: draft PCB schematics and 3D-printable housing CAD for the canopy, reservoir, brain, and power entry modules.">
+<title>Project Eden — Hardware (Draft Schematics &amp; CAD)</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body style="margin:0">
+<nav class="site-nav"><div class="shell-wide">
+  <a class="brand" href="index.html">🌿 Project Eden</a>
+  <a class="navlink" href="index.html">Vision</a>
+  <a class="navlink" href="hardware.html" aria-current="page">Hardware</a>
+</div></nav>
+
+<div class="eden-page">
+
+  <header class="hero" style="padding:56px 0 40px">
+    <div class="shell">
+      <div class="hero-eyebrow"><span class="node-dot"></span>HARDWARE — DRAFT FOR DESIGN REVIEW</div>
+      <h1>Schematics &amp; printed housings</h1>
+      <p class="hero-sub">Block-level PCB schematics and parametric CAD for every enclosure we 3D-print. All drafts derive from the ratified v1 hardware design; final schematic capture and duct tuning happen on the bench before anything is fabricated.</p>
+      <div class="status-pill"><span class="node-dot"></span>Draft v0.1 — geometry and netlists are parametric, not frozen</div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>PCB — Draft Schematics</div>
+        <h2>Three boards, one 24V bus, zero mains on our copper</h2>
+        <p class="section-dek">The canopy board is a rev-B evolution of an existing KiCad design; the reservoir stays breadboard-first until its behavior is bench-proven, then gets its first PCB spin at pilot volume.</p>
+      </div>
+
+      <div class="fig"><img src="assets/sch-canopy-rev-b.svg" alt="Canopy module rev B draft block schematic"></div>
+      <p class="fig-cap">Canopy rev B — ESP32-S3 with camera, five-device I2C sensor bus, dual fan drivers (headers for four), two 0–10V dim stages, mister channel, and the self-locking lift driver with hard limit switches and current-sense stall detection.</p>
+
+      <div class="fig"><img src="assets/sch-reservoir.svg" alt="Reservoir module draft block schematic"></div>
+      <p class="fig-cap">Reservoir — ESP32-C3 with precision ADC for pH/EC, an I/O expander for level/leak/valve signals, and five pump channels. Circulation and aeration are never interlocked; only chemical-adding actuators halt on a fault.</p>
+
+      <div class="fig"><img src="assets/sch-power-entry.svg" alt="Power entry box draft wiring diagram"></div>
+      <p class="fig-cap">Power Entry Box — one wall cord, GFCI-first, and every conductor that leaves the box is ≤24V DC. Certified converters only; our boards never touch mains.</p>
+
+      <p class="dl-note">Full KiCad source for the canopy board exists today (v0.2 schematic, 4-layer spec); the rev-B capture shown here is scheduled work with every <span class="mono">VERIFY</span> item resolved before fabrication. Sources live in the engineering repo.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Enclosures — 3D-Printed CAD</div>
+        <h2>Housings designed as instruments, not boxes</h2>
+        <p class="section-dek">Each enclosure is parametric OpenSCAD, printed in PETG (ASA where it lives near the light's heat). The canopy housing is the interesting one: its aspiration duct is a meteorology-grade sampling channel, so the sensors read the grow zone — not the electronics' own heat.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="fig"><img src="assets/housing-canopy.svg" alt="Canopy housing isometric draft"></div>
+          <p class="fig-cap">Canopy — aspirated sensor duct, down-facing ToF / spectral / camera windows, two-point lift suspension bosses, expansion jack.</p>
+        </div>
+        <div>
+          <div class="fig"><img src="assets/housing-reservoir.svg" alt="Reservoir housing isometric draft"></div>
+          <p class="fig-cap">Reservoir — sloped roof sheds splash, every cable enters from below through a drip loop, probe glands take the shortest path to the water.</p>
+        </div>
+        <div>
+          <div class="fig"><img src="assets/housing-brain.svg" alt="Brain housing isometric draft"></div>
+          <p class="fig-cap">Brain — Pi 5 with active cooling, vents aligned to the cooler's airflow, mounted outside the wet zone.</p>
+        </div>
+        <div>
+          <div class="fig"><img src="assets/housing-entry-box.svg" alt="Power entry box isometric draft"></div>
+          <p class="fig-cap">Power Entry Box — sealed mains bay with internal barrier, externally accessible GFCI and master kill switch, low-voltage-only gland row.</p>
+        </div>
+      </div>
+
+      <p class="dl-note">Printable geometry: <span class="mono">hardware/cad/{canopy, reservoir, brain, entry-box}.scad</span> in the engineering repo — parametric, so wall thickness, gland counts, and duct dimensions tune without remodeling. Injection molding is the design-for-manufacture path once pilot volume justifies tooling.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Honesty Ledger</div>
+        <h2>What's frozen vs. what's draft</h2>
+      </div>
+      <div class="safety-grid">
+        <div class="safety-card"><span class="node-dot"></span><p><b>Frozen (ratified design)</b>Module taxonomy, 24V single-plug power architecture, sensor placement strategy, lift safety mandates, interlock chains.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Draft (this page)</b>Block schematics pending rev-B KiCad capture; housing geometry pending bench duct tuning and fit checks.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Proven already</b>~55 host unit tests over the pure control crates; PID, VPD math, dosing interlocks, and safety failsafes run in CI on every commit.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="eden-footer">
+    <div class="shell">
+      <div class="eden-footer-label">Reference</div>
+      <div class="doc-list">
+        <span class="mono">← <a href="index.html" style="color:var(--accent)">System vision</a></span>
+        <span class="mono">Engineering source of truth: docs/architecture/ in the private engineering repo — access for investors on request.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

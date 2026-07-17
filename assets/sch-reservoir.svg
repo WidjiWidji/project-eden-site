@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 640" font-family="ui-monospace,Consolas,monospace">
+<rect width="1180" height="640" fill="#FBFBF9" rx="8"/>
+<text x="24" y="34" font-size="17" font-weight="bold" fill="#171C1A">Reservoir module — draft block schematic (breadboard-first; PCB at pilot tier)</text>
+<text x="1156" y="34" font-size="11" fill="#4B534E" text-anchor="end">DRAFT — for design review, not fabrication</text>
+<text x="24.0" y="56.0" font-size="11" fill="#99521F" text-anchor="start">hardware-design-v1.md §4 + reservoir-hardware-spec.md (amended) · ESP32-C3 · all actuators on the 24V bus</text>
+<rect x="470.0" y="90.0" width="200.0" height="130.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="570.0" y="108.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">ESP32-C3</text>
+<text x="570.0" y="124.0" font-size="10" fill="#4B534E" text-anchor="middle">I2C GPIO4/5</text>
+<text x="570.0" y="137.0" font-size="10" fill="#4B534E" text-anchor="middle">1-Wire GPIO6 (DS18B20)</text>
+<text x="570.0" y="150.0" font-size="10" fill="#4B534E" text-anchor="middle">flow pulse GPIO1 (IRQ)</text>
+<text x="570.0" y="163.0" font-size="10" fill="#4B534E" text-anchor="middle">UART0 free again</text>
+<rect x="120.0" y="90.0" width="180.0" height="100.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="210.0" y="108.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">ADS1115 0x48</text>
+<text x="210.0" y="124.0" font-size="10" fill="#4B534E" text-anchor="middle">A0: pH (SEN0161-V2)</text>
+<text x="210.0" y="137.0" font-size="10" fill="#4B534E" text-anchor="middle">A1: EC (DFR0300 K=1)</text>
+<text x="210.0" y="150.0" font-size="10" fill="#4B534E" text-anchor="middle">A2/A3 spare</text>
+<rect x="120.0" y="230.0" width="180.0" height="110.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="210.0" y="248.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">PCF8574 0x20</text>
+<text x="210.0" y="264.0" font-size="10" fill="#4B534E" text-anchor="middle">ch0 float HI · ch1 float LO</text>
+<text x="210.0" y="277.0" font-size="10" fill="#4B534E" text-anchor="middle">ch2 leak sensor</text>
+<text x="210.0" y="290.0" font-size="10" fill="#4B534E" text-anchor="middle">ch3 top-off valve</text>
+<text x="210.0" y="303.0" font-size="10" fill="#4B534E" text-anchor="middle">ch4–7 spare</text>
+<polyline points="300.0,140.0 470.0,140.0" fill="none" stroke="#6C2E92" stroke-width="1.3"/>
+<text x="385.0" y="135.0" font-size="10" fill="#6C2E92" text-anchor="middle">I2C</text>
+<polyline points="300.0,280.0 400.0,280.0 400.0,160.0 470.0,160.0" fill="none" stroke="#6C2E92" stroke-width="1.3"/>
+<rect x="760.0" y="80.0" width="170.0" height="56.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="845.0" y="98.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Circulation pump</text>
+<text x="845.0" y="114.0" font-size="10" fill="#4B534E" text-anchor="middle">GPIO7 · ALWAYS ON</text>
+<rect x="760.0" y="150.0" width="170.0" height="56.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="845.0" y="168.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Air pump</text>
+<text x="845.0" y="184.0" font-size="10" fill="#4B534E" text-anchor="middle">GPIO10 · ALWAYS ON</text>
+<rect x="760.0" y="220.0" width="170.0" height="64.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="845.0" y="238.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Dosing ×3</text>
+<text x="845.0" y="254.0" font-size="10" fill="#4B534E" text-anchor="middle">A GPIO18 · B GPIO19</text>
+<text x="845.0" y="267.0" font-size="10" fill="#4B534E" text-anchor="middle">pH-down GPIO0</text>
+<text x="845.0" y="280.0" font-size="10" fill="#4B534E" text-anchor="middle">rate-limited + lockout</text>
+<rect x="760.0" y="298.0" width="170.0" height="56.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="845.0" y="316.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Top-off pump</text>
+<text x="845.0" y="332.0" font-size="10" fill="#4B534E" text-anchor="middle">GPIO21 (freed)</text>
+<text x="845.0" y="345.0" font-size="10" fill="#4B534E" text-anchor="middle">flood interlock</text>
+<rect x="950.0" y="80.0" width="190.0" height="90.0" rx="4" fill="#FFFFFF" stroke="#99521F" stroke-width="1.4"/>
+<text x="1045.0" y="98.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">24V drivers</text>
+<text x="1045.0" y="114.0" font-size="10" fill="#4B534E" text-anchor="middle">MOSFET/relay stage</text>
+<text x="1045.0" y="127.0" font-size="10" fill="#4B534E" text-anchor="middle">flyback per pump</text>
+<text x="1045.0" y="140.0" font-size="10" fill="#4B534E" text-anchor="middle">star ground at PSU</text>
+<polyline points="930.0,108.0 950.0,108.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="930.0,178.0 950.0,125.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="930.0,252.0 950.0,125.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="930.0,326.0 950.0,125.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="670.0,140.0 760.0,108.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="670.0,150.0 760.0,178.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="670.0,165.0 760.0,252.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="670.0,180.0 760.0,326.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<text x="30.0" y="420.0" font-size="11" fill="#4B534E" text-anchor="start">Interlock chain (reservoir-core): Stale → DryRun → Leak → OutOfRange → Normal — leak halts dosing + top-off,</text>
+<text x="30.0" y="436.0" font-size="11" fill="#4B534E" text-anchor="start">NEVER circulation/air (RDWC oxygenation exemption). Top-off doubles as EC dilution from an RO tank.</text>
+<text x="30.0" y="468.0" font-size="11" fill="#4B534E" text-anchor="start">Probe front-ends isolated from pump switching noise; conformal coating on the (future) PCB.</text>
+</svg>

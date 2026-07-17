@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" font-family="ui-monospace,Consolas,monospace">
+<rect width="760" height="460" fill="#FBFBF9" rx="8"/>
+<text x="24" y="34" font-size="17" font-weight="bold" fill="#171C1A">Reservoir housing — 140 × 100 × 60 mm · PETG</text>
+<text x="736" y="34" font-size="11" fill="#4B534E" text-anchor="end">DRAFT — for design review, not fabrication</text>
+<polygon points="330.0,275.0 524.0,387.0 524.0,291.0 330.0,179.0" fill="#DDE0D6" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="524.0,387.0 385.4,467.0 385.4,371.0 524.0,291.0" fill="#C9CDC0" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="330.0,179.0 524.0,291.0 385.4,371.0 191.4,259.0" fill="#EDEFE8" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<polyline points="330.0,191.8 191.4,259.0" fill="none" stroke="#4B534E" stroke-width="1.0" stroke-dasharray="4,3"/>
+<polyline points="524.0,303.8 385.4,371.0" fill="none" stroke="#4B534E" stroke-width="1.0" stroke-dasharray="4,3"/>
+<ellipse cx="295.4" cy="335.0" rx="7.0" ry="4.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<ellipse cx="336.9" cy="359.0" rx="7.0" ry="4.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<ellipse cx="378.5" cy="383.0" rx="7.0" ry="4.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<ellipse cx="420.1" cy="407.0" rx="7.0" ry="4.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<ellipse cx="353.6" cy="317.4" rx="9.0" ry="5.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<ellipse cx="395.1" cy="341.4" rx="9.0" ry="5.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<ellipse cx="436.7" cy="365.4" rx="9.0" ry="5.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<polyline points="288.4,315.0 579.0,91.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="585.0" y="95.0" font-size="11" fill="#4B534E" text-anchor="start">sloped roof — splash runs off</text>
+<polyline points="395.1,341.4 39.0,411.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="45.0" y="415.0" font-size="11" fill="#4B534E" text-anchor="start">probe glands ×3 (pH · EC · temp)</text>
+<polyline points="420.1,407.0 494.0,411.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="500.0" y="415.0" font-size="11" fill="#4B534E" text-anchor="start">drip-loop cable glands ×4</text>
+<polyline points="406.2,407.0 594.0,146.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="600.0" y="150.0" font-size="11" fill="#4B534E" text-anchor="start">wall-mount tabs (above waterline)</text>
+<text x="24.0" y="56.0" font-size="11" fill="#99521F" text-anchor="start">hardware/cad/reservoir.scad — draft v0.1 · IP54-ish intent</text>
+</svg>

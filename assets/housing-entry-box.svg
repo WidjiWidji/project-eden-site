@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" font-family="ui-monospace,Consolas,monospace">
+<rect width="760" height="480" fill="#FBFBF9" rx="8"/>
+<text x="24" y="34" font-size="17" font-weight="bold" fill="#171C1A">Power Entry Box — 220 × 160 × 90 mm · PETG · the only mains location</text>
+<text x="736" y="34" font-size="11" fill="#4B534E" text-anchor="end">DRAFT — for design review, not fabrication</text>
+<polygon points="340.0,300.0 559.1,426.5 559.1,323.0 340.0,196.5" fill="#DDE0D6" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="559.1,426.5 399.8,518.5 399.8,415.0 559.1,323.0" fill="#C9CDC0" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="340.0,196.5 559.1,323.0 399.8,415.0 180.7,288.5" fill="#EDEFE8" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="359.9,282.8 429.6,323.0 429.6,271.2 359.9,231.0" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.2" stroke-linejoin="round"/>
+<ellipse cx="459.5" cy="314.9" rx="10.9" ry="12.6" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.1"/>
+<ellipse cx="537.2" cy="416.1" rx="4.5" ry="6.5" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.1"/>
+<ellipse cx="509.3" cy="432.2" rx="4.5" ry="6.5" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.1"/>
+<ellipse cx="481.4" cy="448.3" rx="4.5" ry="6.5" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.1"/>
+<ellipse cx="453.5" cy="464.4" rx="4.5" ry="6.5" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.1"/>
+<ellipse cx="425.6" cy="480.5" rx="4.5" ry="6.5" fill="#FBFBF9" stroke="#171C1A" stroke-width="1.1"/>
+<polyline points="394.8,277.6 24.0,431.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="30.0" y="435.0" font-size="11" fill="#4B534E" text-anchor="start">GFCI face — accessible without opening the sealed bay</text>
+<polyline points="459.5,314.9 464.0,416.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="470.0" y="420.0" font-size="11" fill="#4B534E" text-anchor="start">22mm master switch (physical kill)</text>
+<polyline points="479.4,449.5 594.0,196.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="600.0" y="200.0" font-size="11" fill="#4B534E" text-anchor="start">low-voltage glands ×5 — ONLY ≤24V exits</text>
+<polyline points="340.0,369.0 584.0,86.0" fill="none" stroke="#4B534E" stroke-width="0.9"/>
+<text x="590.0" y="90.0" font-size="11" fill="#4B534E" text-anchor="start">internal mains / LV barrier + DIN rail</text>
+<text x="24.0" y="56.0" font-size="11" fill="#99521F" text-anchor="start">hardware/cad/entry-box.scad — draft v0.1 · GFCI → LRS-150-24 + Pi PSU + light driver inside</text>
+</svg>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 760" font-family="ui-monospace,Consolas,monospace">
+<rect width="1180" height="760" fill="#FBFBF9" rx="8"/>
+<text x="24" y="34" font-size="17" font-weight="bold" fill="#171C1A">Canopy module rev B — draft block schematic (amends canopy-module-pcb-spec.md v0.2)</text>
+<text x="1156" y="34" font-size="11" fill="#4B534E" text-anchor="end">DRAFT — for design review, not fabrication</text>
+<text x="24.0" y="56.0" font-size="11" fill="#99521F" text-anchor="start">hardware-design-v1.md §3 · KiCad source: canopy-module.kicad_sch (rev B capture = issue #74)</text>
+<rect x="30.0" y="90.0" width="140.0" height="64.0" rx="4" fill="#FFFFFF" stroke="#99521F" stroke-width="1.4"/>
+<text x="100.0" y="108.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">24V IN</text>
+<text x="100.0" y="124.0" font-size="10" fill="#4B534E" text-anchor="middle">Mini-Fit Jr 2-pin</text>
+<text x="100.0" y="137.0" font-size="10" fill="#4B534E" text-anchor="middle">SS34 + 3A PPTC</text>
+<text x="100.0" y="150.0" font-size="10" fill="#4B534E" text-anchor="middle">VERIFY 24V ratings</text>
+<rect x="210.0" y="90.0" width="130.0" height="64.0" rx="4" fill="#FFFFFF" stroke="#99521F" stroke-width="1.4"/>
+<text x="275.0" y="108.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">TPS54302</text>
+<text x="275.0" y="124.0" font-size="10" fill="#4B534E" text-anchor="middle">buck 24V→5V</text>
+<text x="275.0" y="137.0" font-size="10" fill="#4B534E" text-anchor="middle">1.5A</text>
+<rect x="380.0" y="90.0" width="130.0" height="64.0" rx="4" fill="#FFFFFF" stroke="#99521F" stroke-width="1.4"/>
+<text x="445.0" y="108.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">AMS1117-3.3</text>
+<text x="445.0" y="124.0" font-size="10" fill="#4B534E" text-anchor="middle">LDO 5V→3.3V</text>
+<rect x="210.0" y="180.0" width="130.0" height="56.0" rx="4" fill="#FFFFFF" stroke="#99521F" stroke-width="1.4"/>
+<text x="275.0" y="198.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">LP2950-12</text>
+<text x="275.0" y="214.0" font-size="10" fill="#4B534E" text-anchor="middle">24V→12V op-amp rail</text>
+<text x="275.0" y="227.0" font-size="10" fill="#4B534E" text-anchor="middle">VERIFY dissipation</text>
+<polyline points="170.0,122.0 210.0,122.0" fill="none" stroke="#171C1A" stroke-width="1.3"/>
+<text x="190.0" y="117.0" font-size="10" fill="#171C1A" text-anchor="middle">24V</text>
+<polyline points="340.0,122.0 380.0,122.0" fill="none" stroke="#171C1A" stroke-width="1.3"/>
+<text x="360.0" y="117.0" font-size="10" fill="#171C1A" text-anchor="middle">5V</text>
+<polyline points="100.0,154.0 100.0,208.0 210.0,208.0" fill="none" stroke="#171C1A" stroke-width="1.3"/>
+<text x="155.0" y="149.0" font-size="10" fill="#171C1A" text-anchor="middle">24V</text>
+<rect x="560.0" y="100.0" width="220.0" height="150.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="670.0" y="118.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">ESP32-S3-WROOM-1U</text>
+<text x="670.0" y="134.0" font-size="10" fill="#4B534E" text-anchor="middle">N16R8 · Wi-Fi (U.FL)</text>
+<text x="670.0" y="147.0" font-size="10" fill="#4B534E" text-anchor="middle">camera DVP GPIO6–19</text>
+<text x="670.0" y="160.0" font-size="10" fill="#4B534E" text-anchor="middle">I2C GPIO4/5 · UART dbg</text>
+<text x="670.0" y="173.0" font-size="10" fill="#4B534E" text-anchor="middle">USB-C native</text>
+<polyline points="510.0,122.0 560.0,122.0" fill="none" stroke="#171C1A" stroke-width="1.3"/>
+<text x="535.0" y="117.0" font-size="10" fill="#171C1A" text-anchor="middle">3V3</text>
+<rect x="850.0" y="90.0" width="150.0" height="56.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="925.0" y="108.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">OV2640</text>
+<text x="925.0" y="124.0" font-size="10" fill="#4B534E" text-anchor="middle">24-pin FPC · DVP</text>
+<text x="925.0" y="137.0" font-size="10" fill="#4B534E" text-anchor="middle">PSRAM framebuf</text>
+<polyline points="780.0,118.0 850.0,118.0" fill="none" stroke="#171C1A" stroke-width="1.3"/>
+<text x="815.0" y="113.0" font-size="10" fill="#171C1A" text-anchor="middle">DVP ×12</text>
+<polyline points="670.0,250.0 670.0,300.0 1120.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.6"/>
+<text x="690.0" y="293.0" font-size="10" fill="#6C2E92" text-anchor="start">I2C bus 400kHz — 4.7k pull-ups</text>
+<rect x="90.0" y="330.0" width="160.0" height="52.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="170.0" y="348.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Satellite: SHT40+SCD40</text>
+<text x="170.0" y="364.0" font-size="10" fill="#4B534E" text-anchor="middle">aspirated duct · FFC</text>
+<polyline points="165.0,330.0 165.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.1"/>
+<rect x="290.0" y="330.0" width="150.0" height="52.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="365.0" y="348.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">VL53L1X 0x29</text>
+<text x="365.0" y="364.0" font-size="10" fill="#4B534E" text-anchor="middle">ToF · down-facing</text>
+<polyline points="365.0,330.0 365.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.1"/>
+<rect x="470.0" y="330.0" width="150.0" height="52.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="545.0" y="348.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">AS7341 0x39</text>
+<text x="545.0" y="364.0" font-size="10" fill="#4B534E" text-anchor="middle">reflectance · down</text>
+<polyline points="545.0,330.0 545.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.1"/>
+<rect x="650.0" y="330.0" width="150.0" height="52.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="725.0" y="348.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">PCA9685 0x40</text>
+<text x="725.0" y="364.0" font-size="10" fill="#4B534E" text-anchor="middle">fan3/4 PWM · DNP</text>
+<polyline points="725.0,330.0 725.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.1"/>
+<rect x="830.0" y="330.0" width="150.0" height="52.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="905.0" y="348.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">MLX90640 0x33</text>
+<text x="905.0" y="364.0" font-size="10" fill="#4B534E" text-anchor="middle">DNP · Tier 3</text>
+<polyline points="905.0,330.0 905.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.1"/>
+<rect x="1000.0" y="330.0" width="150.0" height="52.0" rx="4" fill="#FFFFFF" stroke="#6C2E92" stroke-width="1.4"/>
+<text x="1075.0" y="348.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">STEMMA-QT</text>
+<text x="1075.0" y="364.0" font-size="10" fill="#4B534E" text-anchor="middle">spare jack</text>
+<polyline points="1075.0,330.0 1075.0,300.0" fill="none" stroke="#6C2E92" stroke-width="1.1"/>
+<rect x="90.0" y="470.0" width="170.0" height="70.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="175.0" y="488.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">IRLZ44N ×2</text>
+<text x="175.0" y="504.0" font-size="10" fill="#4B534E" text-anchor="middle">fan1/2 · GPIO38/39 PWM</text>
+<text x="175.0" y="517.0" font-size="10" fill="#4B534E" text-anchor="middle">tach GPIO40/41</text>
+<text x="175.0" y="530.0" font-size="10" fill="#4B534E" text-anchor="middle">flyback per fan</text>
+<rect x="300.0" y="470.0" width="180.0" height="70.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="390.0" y="488.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Dim stage ×2</text>
+<text x="390.0" y="504.0" font-size="10" fill="#4B534E" text-anchor="middle">GPIO42 → RC → MCP6001</text>
+<text x="390.0" y="517.0" font-size="10" fill="#4B534E" text-anchor="middle">0–10V to HLG driver</text>
+<text x="390.0" y="530.0" font-size="10" fill="#4B534E" text-anchor="middle">ch2 populated, unwired</text>
+<rect x="520.0" y="470.0" width="170.0" height="70.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="605.0" y="488.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Mister MOSFET</text>
+<text x="605.0" y="504.0" font-size="10" fill="#4B534E" text-anchor="middle">GPIO47 PWM</text>
+<text x="605.0" y="517.0" font-size="10" fill="#4B534E" text-anchor="middle">24V ultrasonic fogger</text>
+<rect x="730.0" y="470.0" width="200.0" height="70.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="830.0" y="488.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">DRV8871 lift driver</text>
+<text x="830.0" y="504.0" font-size="10" fill="#4B534E" text-anchor="middle">GPIO3 PWM · GPIO20 DIR</text>
+<text x="830.0" y="517.0" font-size="10" fill="#4B534E" text-anchor="middle">current-sense → GPIO21 ADC</text>
+<text x="830.0" y="530.0" font-size="10" fill="#4B534E" text-anchor="middle">VERIFY ADC2+Wi-Fi noise</text>
+<rect x="960.0" y="470.0" width="170.0" height="70.0" rx="4" fill="#FFFFFF" stroke="#171C1A" stroke-width="1.4"/>
+<text x="1045.0" y="488.0" font-size="12" fill="#171C1A" text-anchor="middle" font-weight="bold">Limit switches</text>
+<text x="1045.0" y="504.0" font-size="10" fill="#4B534E" text-anchor="middle">top GPIO45 · bottom GPIO46</text>
+<text x="1045.0" y="517.0" font-size="10" fill="#4B534E" text-anchor="middle">VERIFY strapping pins</text>
+<polyline points="175.0,470.0 175.0,430.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="390.0,470.0 390.0,430.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="605.0,470.0 605.0,430.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="830.0,470.0 830.0,430.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="1045.0,470.0 1045.0,430.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<polyline points="90.0,430.0 1130.0,430.0" fill="none" stroke="#171C1A" stroke-width="1.0"/>
+<text x="100.0" y="423.0" font-size="10" fill="#4B534E" text-anchor="start">GPIO / 24V actuator rail (fans, mister, lift on 24V bus; logic 3V3)</text>
+<text x="30.0" y="600.0" font-size="11" fill="#4B534E" text-anchor="start">Safety: worm-gear lift is self-locking (holds on power loss) · hard limits are physical, not firmware ·</text>
+<text x="30.0" y="616.0" font-size="11" fill="#4B534E" text-anchor="start">stall cutoff via current-sense — three independent stop mechanisms (hardware-design-v1 §6.3).</text>
+<text x="30.0" y="648.0" font-size="11" fill="#99521F" text-anchor="start">All VERIFY items are resolved at schematic capture (#74) before any board is ordered.</text>
+</svg>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Autonomous indoor grow system: one wall plug, three modules, an AI brain.">
+<title>Project Eden — Commercial v1</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body style="margin:0">
+<nav class="site-nav"><div class="shell-wide">
+  <a class="brand" href="index.html">🌿 Project Eden</a>
+  <a class="navlink" href="index.html" aria-current="page">Vision</a>
+  <a class="navlink" href="hardware.html">Hardware</a>
+</div></nav>
+
+<div class="eden-page">
+
+  <header class="hero">
+    <div class="shell">
+      <div class="hero-eyebrow"><span class="node-dot"></span>PROJECT EDEN — COMMERCIAL V1</div>
+      <h1>One wall plug. Three modules. An AI brain.</h1>
+      <p class="hero-sub">An autonomous indoor grow system running RDWC hydroponics, built for any indoor grow site. The 2×2 tent is the first vehicle — not the destination.</p>
+      <div class="status-pill"><span class="node-dot"></span>Commercial v1 design ratified 2026-07-13 — sellable one-off wave</div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><b>1</b><span>mains entry point, behind GFCI</span></div>
+        <div class="hero-stat"><b>≤24V</b><span>on every module beyond the entry box</span></div>
+        <div class="hero-stat"><b>3</b><span>control tiers — edge, brain, optional cloud</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="architecture">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>System Architecture</div>
+        <h2>Power in one place, intelligence at the edge</h2>
+        <p class="section-dek">Every mains connection in the tent lives in a single Power Entry Box, behind one GFCI. Everything downstream of it runs on 24V DC, carried through raceways built into the PVC frame.</p>
+      </div>
+
+      <p class="body-text">The Power Entry Box is the only place in the system that touches wall power: a GFCI feeds a certified 24V PSU, a Pi PSU, and the light driver. The 24V bus threads through the frame to the Canopy (ESP32-S3) and Reservoir (ESP32-C3) modules. The Brain — a Raspberry Pi 5 — hosts its own Wi-Fi access point; modules ship pre-paired to it, and MQTT stays entirely local (<code class="mono">eden/&lt;tent-id&gt;/&lt;module&gt;/&lt;channel&gt;</code>). An uplink to the home LAN or cloud is optional. Camera frames reach the Brain as JPEGs over HTTP.</p>
+
+      <div class="diagram-frame">
+<pre class="mermaid">
+flowchart LR
+  subgraph PEB["Power Entry Box — only mains location"]
+    GFCI["GFCI"] --> PSU["24V PSU"]
+    GFCI --> PIPSU["Pi 5 PSU"]
+    GFCI --> DRV["Light driver"]
+  end
+  PSU --> BUS["24V DC bus<br/>PVC frame raceways"]
+  BUS --> CANOPY["Canopy<br/>ESP32-S3"]
+  BUS --> RES["Reservoir<br/>ESP32-C3"]
+  PIPSU --> BRAIN["Brain<br/>Raspberry Pi 5"]
+  DRV -.-> CANOPY
+  CANOPY -- "MQTT + camera JPEG / HTTP" --> BRAIN
+  RES -- "MQTT" --> BRAIN
+  BRAIN -. "optional uplink" .-> CLOUD["Home LAN / Cloud"]
+</pre>
+      </div>
+      <div class="diagram-caption">Brain runs the Wi-Fi AP and MQTT broker for the tent — the network the modules speak on doesn't leave the room unless you ask it to.</div>
+    </div>
+  </section>
+
+  <section class="section" id="modules">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Modules</div>
+        <h2>Three modules, one job each</h2>
+        <p class="section-dek">Canopy watches and shapes the light and air above the plants. Reservoir owns the water. Brain decides.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="module-card">
+          <div class="module-card-head"><h3>Canopy</h3><span class="module-tag">ESP32-S3</span></div>
+          <ul>
+            <li><b>Motorized light lift</b> — worm-gear, self-locking, hard limit switches, stall cutoff. AI holds optimal light distance as plants grow.</li>
+            <li>2→4 PWM fans, two 0–10V dimming channels</li>
+            <li>24V ultrasonic mister</li>
+            <li>Aspirated sensor duct — <span class="part-chip">SHT40</span> + <span class="part-chip">SCD40</span> satellite board, pulled clear of light and PCB heat for meteorology-grade air readings</li>
+            <li><span class="part-chip">VL53L1X</span> ToF — canopy distance, modeled into PPFD and plant-height growth telemetry</li>
+            <li><span class="part-chip">AS7341</span> down-facing plant-health reflectance</li>
+            <li><span class="part-chip">OV2640</span> camera</li>
+            <li>Spare STEMMA-QT expansion jack</li>
+          </ul>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head"><h3>Reservoir</h3><span class="module-tag">ESP32-C3</span></div>
+          <ul>
+            <li>pH, EC, and water-temp probes</li>
+            <li>Three dosing pumps</li>
+            <li>Auto top-off — doubles as EC dilution</li>
+            <li>Leak sensor</li>
+            <li>Float switches and a flow sensor</li>
+            <li><b>Circulation and the air pump are never interlocked</b> — RDWC roots need continuous oxygenation, so only dosing halts on a fault.</li>
+          </ul>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head"><h3>Brain</h3><span class="module-tag">Pi 5</span></div>
+          <ul>
+            <li>Site Wi-Fi access point</li>
+            <li>MQTT broker</li>
+            <li>Policy engine — rule-based in v1, learned later</li>
+            <li>Web app (PWA)</li>
+            <li>Grafana</li>
+            <li>Battery-backed RTC</li>
+            <li>OTA image server</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="control">
+    <div class="shell">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Control Philosophy</div>
+        <h2>Three tiers, one rule</h2>
+      </div>
+
+      <div class="philosophy-grid">
+        <div>
+          <div class="tier-rule">→ the fast loop never crosses the network</div>
+          <div class="tier-list">
+            <div class="tier-row">
+              <span class="tier-num">01</span>
+              <div><h4>Edge reflexes</h4><p>On-module control, no network dependency. Runs even if the Brain is gone.</p></div>
+            </div>
+            <div class="tier-row">
+              <span class="tier-num">02</span>
+              <div><h4>Brain setpoints</h4><p>Delivered over MQTT, bounded by a TTL — a stale setpoint expires back to edge defaults.</p></div>
+            </div>
+            <div class="tier-row">
+              <span class="tier-num">03</span>
+              <div><h4>Cloud (optional)</h4><p>Advisory only, reachable through the Brain's optional uplink.</p></div>
+            </div>
+          </div>
+
+          <div class="priority-ladder">
+            <div class="priority-row" data-level="1"><span class="priority-badge">P1</span><div class="priority-body"><b>Stale sensor data</b><br><span>→ failsafe fan, hold light</span></div></div>
+            <div class="priority-row" data-level="2"><span class="priority-badge">P2</span><div class="priority-body"><b>Over-temp</b><br><span>→ vent + dim + mister off</span></div></div>
+            <div class="priority-row" data-level="3"><span class="priority-badge">P3</span><div class="priority-body"><b>Leak</b><br><span>→ halt dosing + top-off, never circulation</span></div></div>
+            <div class="priority-row" data-level="4"><span class="priority-badge">P4</span><div class="priority-body"><b>Any fault</b><br><span>→ lift holds position</span></div></div>
+          </div>
+        </div>
+
+        <div class="mech-list">
+          <div class="mech-item">
+            <h4><span class="node-dot"></span>Two-sided VPD control</h4>
+            <p>The fan pulls humidity down; the mister pushes it up. A signed PID with a deadband drives whichever direction is needed, and the two outputs are mutually exclusive — never fighting each other over the same air.</p>
+          </div>
+          <div class="mech-item">
+            <h4><span class="node-dot"></span>Dosing order</h4>
+            <p>Settle-lockout between doses, EC corrected before pH, and top-off does double duty as EC dilution rather than a separate step.</p>
+          </div>
+          <div class="mech-item">
+            <h4><span class="node-dot"></span>Safety priority ladder</h4>
+            <p>Checked in strict order every control cycle — a higher-priority condition always overrides a lower one, regardless of what the policy engine last asked for.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="safety">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Safety by Design</div>
+        <h2>Fails safe, recovers on its own</h2>
+      </div>
+      <div class="safety-grid">
+        <div class="safety-card"><span class="node-dot"></span><p><b>Single mains location</b>Every wall-power connection sits behind one GFCI in the Power Entry Box — nowhere else in the tent touches mains.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>≤24V everywhere else</b>Nothing on the Canopy or Reservoir module, or the DC bus feeding them, exceeds 24V.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Self-locking lift</b>Worm-gear drive holds position with power off — no drift, no drop.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Flood, dose, and mist budgets</b>Hard caps on volume and runtime bound the worst case for every wet actuator.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Watchdogs + safe-state boot</b>On any reset, circulation and the air pump come up on; everything else stays off until the control loop is healthy.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Plug-yank recovery</b>Pulling power and restoring it is a tested acceptance criterion, not an assumption.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="evolution">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Evolution</div>
+        <h2>From one-offs to design-for-manufacture</h2>
+        <p class="section-dek">Commercial v1 is Wave A. The path to Wave C is already scoped — it's a question of order, not redesign.</p>
+      </div>
+
+      <div class="wave-grid">
+        <div class="wave-card">
+          <div class="wave-head"><span class="wave-letter">A</span><span class="wave-scale">units 1–5</span></div>
+          <div class="wave-name">Sellable one-offs</div>
+          <ul>
+            <li>Printed PETG/ASA housings</li>
+            <li>Hand provisioning per unit</li>
+            <li>USB flash for firmware updates</li>
+          </ul>
+        </div>
+        <div class="wave-card">
+          <div class="wave-head"><span class="wave-letter">B</span><span class="wave-scale">units 10–50</span></div>
+          <div class="wave-name">Pilot</div>
+          <ul>
+            <li>Reservoir gets a real PCB</li>
+            <li>OTA + rollback mandatory</li>
+            <li>Provisioning a non-engineer can run</li>
+            <li>Firmware CI wired up</li>
+            <li>Pre-certified modules</li>
+          </ul>
+        </div>
+        <div class="wave-card">
+          <div class="wave-head"><span class="wave-letter">C</span><span class="wave-scale">DFM</span></div>
+          <div class="wave-name">Design for manufacture</div>
+          <ul>
+            <li>UL / ETL certification</li>
+            <li>Injection-molded housings</li>
+            <li>Test fixtures on the line</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="deferred-block">
+        <div class="deferred-label">Designed-in, deliberately deferred</div>
+        <div class="tag-row">
+          <span class="tag">ESP-NOW module-family mesh</span>
+          <span class="tag">CO2 enrichment</span>
+          <span class="tag">Water chiller SKU</span>
+          <span class="tag">Native phone app</span>
+          <span class="tag">Canopy PPFD wand — jack already present</span>
+          <span class="tag">Grow-site per-zone module</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="eden-footer">
+    <div class="shell">
+      <div class="eden-footer-label">Go deeper</div>
+      <div class="doc-list">
+        <span class="mono">→ <a href="hardware.html" style="color:var(--accent)">Draft PCB schematics &amp; 3D-printed housing CAD</a></span>
+        <span class="mono">Engineering source of truth: docs/architecture/ in the private engineering repo — access for investors on request.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral" });
+</script>
+</body>
+</html>
