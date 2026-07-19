@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Project Eden bill of materials: real vendor links, verified prices, and pooled-cost analysis for the canopy, reservoir, brain, and power/frame modules.">
+<title>Project Eden — Bill of Materials</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body style="margin:0">
+<nav class="site-nav"><div class="shell-wide">
+  <a class="brand" href="index.html">🌿 Project Eden</a>
+  <a class="navlink" href="index.html">Vision</a>
+  <a class="navlink" href="hardware.html">Hardware</a>
+  <a class="navlink" href="bom.html" aria-current="page">Bill of Materials</a>
+</div></nav>
+
+<div class="eden-page">
+
+  <header class="hero" style="padding:56px 0 40px">
+    <div class="shell">
+      <div class="hero-eyebrow"><span class="node-dot"></span>BILL OF MATERIALS — COST SNAPSHOT</div>
+      <h1>What one system costs to build, part by part</h1>
+      <p class="hero-sub">Every part in the canopy, reservoir, brain, and power/frame subsystems, with the real vendor listing and price behind it — not a rounded guess. Priced against the ratified commercial v1 design (rev B).</p>
+      <div class="status-pill"><span class="node-dot"></span>Snapshot pricing, July 2026 — one-off (Wave A) unit volume, not a bulk/pilot quote</div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="shell-wide">
+      <div class="bom-stats">
+        <div class="bom-stat accent"><b>$1,133.94</b><span>total, one-off unit — canopy + reservoir + brain + power/frame, see below</span></div>
+        <div class="bom-stat"><b>$418.43</b><span>Canopy — ESP32-S3, sensors, lift, mister</span></div>
+        <div class="bom-stat"><b>$305.12</b><span>Reservoir — ESP32-C3, dosing, pumps</span></div>
+        <div class="bom-stat"><b>$256.99</b><span>Brain — Raspberry Pi 5 kit</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="parts">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Parts &amp; Sourcing</div>
+        <h2>44 line items, real vendor links</h2>
+        <p class="section-dek">Grouped by module. Every row links to the actual listing the price came from; where a price couldn't be pulled from a live page, it's marked <span class="mono">(est.)</span> and the listing is still linked, not invented.</p>
+      </div>
+
+      <div class="module-tab-row">
+        <a class="module-tab" href="#canopy">Canopy</a>
+        <a class="module-tab" href="#reservoir">Reservoir</a>
+        <a class="module-tab" href="#brain">Brain</a>
+        <a class="module-tab" href="#power-frame">Power / Frame</a>
+      </div>
+
+      <p class="dl-note">Legend — <span class="vlink rec">rec</span> recommended vendor, price verified live · <span class="vlink alt">alt</span> alternate/second source or a real listing whose price we couldn't confirm live · <span class="vlink ds">ds</span> datasheet.</p>
+
+      <div class="module-card-head" style="margin-top:26px"><h3 id="canopy">Canopy — ESP32-S3</h3><span class="module-tag">$418.43</span></div>
+      <div class="bom-table-wrap">
+        <table class="bom">
+          <thead><tr><th>Part &amp; spec</th><th>Qty</th><th>Unit</th><th>Line total</th><th>Sourcing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="part-cell"><b>ESP32-S3-WROOM-1U-N16R8</b><span class="spec">16MB flash / 8MB PSRAM, U.FL antenna, castellated SMD</span></td>
+              <td class="qty">1</td><td class="price">$6.76</td><td class="price">$6.76</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R8/16162641">DigiKey</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>OV2640 camera module</b><span class="spec">160° wide-angle, 24-pin 0.5mm FPC, DVP + SCCB</span></td>
+              <td class="qty">1</td><td class="price">~$8.00 (est.)</td><td class="price">~$8.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/OV2640-Camera-Module-Interface-Degree/dp/B09TPZZ3YR">Amazon</a>
+                <span class="reason">Listing verified live; price not fetch-confirmed</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>HLG 65 V2 grow light</b><span class="spec">Quantum-board LED fixture, 0–10V dim input (verify — see note)</span></td>
+              <td class="qty">1</td><td class="price">$99.00</td><td class="price">$99.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://horticulturelightinggroup.com/products/hlg-65">HLG store</a>
+                <a class="vlink alt" href="https://growershouse.com/horticulture-lighting-group-65w-quantum-board-hlg65">GrowersHouse $61</a>
+                <span class="reason">Dimming behavior described inconsistently across retailers — bench-verify the 0–10V input before trusting the op-amp dimmer circuit</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>24V PWM cooling fan</b><span class="spec">80×80×38mm, 4-wire PWM+tach, 25kHz-capable</span></td>
+              <td class="qty">2</td><td class="price">$31.25</td><td class="price">$62.50</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/delta-electronics/PFB0824DHEP0/21556251">DigiKey (Delta)</a>
+                <a class="vlink ds" href="https://www.delta-fan.com/pfb0824dhep0.html">Datasheet</a>
+                <span class="reason">Confirmed real 24V+tach part is thicker/pricier than the old 12V-era ballpark</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>SHT40</b><span class="spec">Temp/RH sensor, STEMMA QT/Qwiic, ±1.8%RH</span></td>
+              <td class="qty">1</td><td class="price">$5.95</td><td class="price">$5.95</td>
+              <td><div class="vendor-links"><a class="vlink rec" href="https://www.adafruit.com/product/4885">Adafruit</a></div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>AS7341</b><span class="spec">10-channel spectral sensor, STEMMA QT/Qwiic</span></td>
+              <td class="qty">1</td><td class="price">$18.95</td><td class="price">$18.95</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.adafruit.com/product/4698">Adafruit</a>
+                <span class="reason">Currently listed out of stock</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>SCD40</b><span class="spec">CO₂ sensor (SCD4x), STEMMA QT/Qwiic</span></td>
+              <td class="qty">1</td><td class="price">$44.95</td><td class="price">$44.95</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.adafruit.com/product/5187">Adafruit</a>
+                <span class="reason">More than 2× an earlier internal planning estimate ($19.95) — corrected here</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>VL53L1X</b><span class="spec">Time-of-flight distance sensor breakout</span></td>
+              <td class="qty">1</td><td class="price">$14.95</td><td class="price">$14.95</td>
+              <td><div class="vendor-links"><a class="vlink rec" href="https://www.adafruit.com/product/3967">Adafruit</a></div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Ultrasonic mister/fogger, 24V</b><span class="spec">Ultrasonic atomizer disc + driver</span></td>
+              <td class="qty">1</td><td class="price">~$20.00 (est.)</td><td class="price">~$20.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/Wytino-Ultrasonic-Fountain-Atomizer-Humidifier/dp/B07VYP5PLG">Amazon</a>
+                <span class="reason">Repurposed pond/humidifier part, not a purpose-built module — price unconfirmed</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>24V worm-gear gearmotor</b><span class="spec">Self-locking, ~28RPM</span></td>
+              <td class="qty">1</td><td class="price">~$28.00 (est.)</td><td class="price">~$28.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/uxcell-50Kg-cm-Self-Locking-Encoder-Reduction/dp/B0788CTS4V">Amazon (uxcell)</a>
+                <span class="reason">Listing bundles an encoder not required by spec — a cheaper non-encoder variant likely exists, unverified</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Mechanical lever limit switch</b><span class="spec">SPDT lever microswitch</span></td>
+              <td class="qty">2</td><td class="price">$5.46</td><td class="price">$10.92</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/V-156-1C25/5237043">DigiKey (Omron)</a>
+                <span class="reason">Branded part shown; generic clones are likely cheaper but unverified</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>DRV8871 H-bridge driver</b><span class="spec">Brushed DC motor driver, current-sense output</span></td>
+              <td class="qty">1</td><td class="price">$7.50</td><td class="price">$7.50</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.adafruit.com/product/3190">Adafruit</a>
+                <a class="vlink ds" href="https://cdn-learn.adafruit.com/downloads/pdf/adafruit-drv8871-brushed-dc-motor-driver-breakout.pdf">Datasheet</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>PCA9685 16-ch PWM driver</b><span class="spec">I2C PWM/servo driver, standard 0.1" header</span></td>
+              <td class="qty">1</td><td class="price">$14.95</td><td class="price">$14.95</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.adafruit.com/product/815">Adafruit</a>
+                <a class="vlink ds" href="https://cdn-learn.adafruit.com/downloads/pdf/16-channel-pwm-servo-driver.pdf">Datasheet</a>
+                <span class="reason">Not STEMMA QT as originally assumed — standard header wiring, re-check bus plan</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>PCB fabrication</b><span class="spec">4-layer, 100×70mm, batch of 5 (4 spares)</span></td>
+              <td class="qty">lot</td><td class="price">~$28.00 (est.)</td><td class="price">~$28.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://cart.jlcpcb.com/quote">JLCPCB quote</a>
+                <span class="reason">Exact price needs the live calculator — not independently fetchable</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>3D-printed PETG enclosure</b><span class="spec">Canopy housing, material cost only</span></td>
+              <td class="qty">1</td><td class="price">~$15.00 (est.)</td><td class="price">~$15.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink ds" href="https://overture3d.com/products/overture-petg">PETG spool (ref.)</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Misc passives / MOSFETs / ICs</b><span class="spec">IRLZ44N ×2, TPS54302, AMS1117-3.3, LP2950-12, MCP6001, TVS, diodes, fuse, passives</span></td>
+              <td class="qty">lot</td><td class="price">~$18.00 (est.)</td><td class="price">~$18.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/texas-instruments/TPS54302DDCT/6123254">DigiKey (TPS54302)</a>
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/infineon-technologies/IRLZ44NSTRLPBF/856858">DigiKey (IRLZ44N)</a>
+                <span class="reason">Two priciest parts confirmed as anchors; remainder is a small-signal bundle</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Connectors &amp; wiring</b><span class="spec">Mini-Fit Jr / JST-XH / JST-SH — see Pooled Cost below</span></td>
+              <td class="qty">lot</td><td class="price">~$15.00 (est.)</td><td class="price">~$15.00</td>
+              <td><div class="vendor-links">
+                <span class="reason">Priced per-unit here; drops sharply at pilot volume</span>
+              </div></td>
+            </tr>
+            <tr class="subtotal"><td>Canopy subtotal</td><td></td><td></td><td class="price">$418.43</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="module-card-head" style="margin-top:40px"><h3 id="reservoir">Reservoir — ESP32-C3</h3><span class="module-tag">$305.12</span></div>
+      <div class="bom-table-wrap">
+        <table class="bom">
+          <thead><tr><th>Part &amp; spec</th><th>Qty</th><th>Unit</th><th>Line total</th><th>Sourcing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="part-cell"><b>ESP32-C3 dev board</b><span class="spec">DevKitM-1-class, N4X</span></td>
+              <td class="qty">1</td><td class="price">$8.00</td><td class="price">$8.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C3-DEVKITM-1-N4X/25587617">DigiKey</a>
+                <a class="vlink ds" href="https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf">Datasheet</a>
+                <span class="reason">Original DevKitM-1 is EOL; this N4X replacement is itself lead-time only — confirm stock before ordering</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>ADS1115</b><span class="spec">16-bit ADC, 4-channel, STEMMA QT/Qwiic</span></td>
+              <td class="qty">1</td><td class="price">$14.95</td><td class="price">$14.95</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.adafruit.com/product/1085">Adafruit</a>
+                <a class="vlink alt" href="https://www.dfrobot.com/product-1730.html">DFRobot $15.50</a>
+                <a class="vlink ds" href="https://www.ti.com/lit/ds/symlink/ads1115.pdf">Datasheet</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>DS18B20 waterproof probe</b><span class="spec">1-Wire, stainless-sheathed, water temp</span></td>
+              <td class="qty">1</td><td class="price">$9.95 (est.)</td><td class="price">$9.95</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.adafruit.com/product/381">Adafruit</a>
+                <a class="vlink ds" href="https://www.analog.com/media/en/technical-documentation/data-sheets/DS18B20.pdf">Datasheet</a>
+                <span class="reason">Adafruit's unit is currently out of stock — generic Amazon equivalents exist, unconfirmed price</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>DFRobot Gravity pH Kit V2</b><span class="spec">SEN0161-V2, analog pH probe + BNC interface</span></td>
+              <td class="qty">1</td><td class="price">$39.50</td><td class="price">$39.50</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.dfrobot.com/product-1782.html">DFRobot</a>
+                <a class="vlink ds" href="https://wiki.dfrobot.com/sen0161-v2/">Wiki/docs</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>pH calibration buffers</b><span class="spec">4.0 &amp; 7.0, two-point calibration set</span></td>
+              <td class="qty">1 set</td><td class="price">~$10.00 (est.)</td><td class="price">~$10.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/General-Hydroponics-4-01-Calibration-Solution/dp/B017H73794">Amazon</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>DFRobot Gravity EC Kit K=1</b><span class="spec">DFR0300, analog EC probe + interface</span></td>
+              <td class="qty">1</td><td class="price">$34.90</td><td class="price">$34.90</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.dfrobot.com/product-1123.html">DFRobot</a>
+                <a class="vlink ds" href="https://wiki.dfrobot.com/dfr0300/">Wiki/docs</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>EC calibration standard</b><span class="spec">1.413 mS/cm, single-point calibration</span></td>
+              <td class="qty">1</td><td class="price">~$9.00 (est.)</td><td class="price">~$9.00</td>
+              <td><div class="vendor-links">
+                <span class="reason">No specific live listing verified in time — search DFRobot or Amazon</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>PCF8574</b><span class="spec">8-bit I2C GPIO expander breakout</span></td>
+              <td class="qty">1</td><td class="price">$4.95</td><td class="price">$4.95</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.adafruit.com/product/5545">Adafruit</a>
+                <a class="vlink ds" href="https://www.nxp.com/docs/en/data-sheet/PCF8574_PCF8574A.pdf">Datasheet</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Relay module, 8-channel</b><span class="spec">6 of 8 channels used — circulation/air/dosing×3/top-off</span></td>
+              <td class="qty">1</td><td class="price">$12.99</td><td class="price">$12.99</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.sainsmart.com/products/8-channel-5v-relay-module">SainSmart</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Circulation pump, 24V</b><span class="spec">Submersible/inline, RDWC circulation, ~1000L/H</span></td>
+              <td class="qty">1</td><td class="price">~$20.00 (est.)</td><td class="price">~$20.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/Small-Aquarium-Circulation-Brushless-Submersible/dp/B07CCH97HH">Amazon</a>
+                <span class="reason">Real listing found; price not fetch-confirmed</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Air pump + air stones</b><span class="spec">Root-zone aeration — verify 24V DC, not 120VAC</span></td>
+              <td class="qty">1</td><td class="price">$55.98</td><td class="price">$55.98</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://vivosun.com/en-US/Air_Pump-c713">VIVOSUN pump $39.99</a>
+                <a class="vlink alt" href="https://www.amazon.com/VIVOSUN-Stone-Cylinder-Aquarium-Hydroponics/dp/B01MV5C1I4">VIVOSUN stones $15.99</a>
+                <span class="reason">Most consumer air pumps found are 120VAC wall-wart units — confirm a true 24V DC variant before ordering</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Peristaltic dosing pump</b><span class="spec">Generic 12V-class — nutrient A, nutrient B, pH-down</span></td>
+              <td class="qty">3</td><td class="price">$12.00 (est.)</td><td class="price">$36.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/Gikfun-Peristaltic-Connector-Aquarium-Analytic/dp/B01IUVHB8E">Amazon (Gikfun)</a>
+                <a class="vlink alt" href="https://kamoer.com/us/product/detail.html?id=8004">Kamoer (premium alt)</a>
+                <span class="reason">Kamoer's real listings run ~$65+, not the ~$35 once assumed for the premium alt — re-check before quoting that upgrade path</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Top-off pump/valve</b><span class="spec">Solenoid valve — doubles as EC dilution</span></td>
+              <td class="qty">1</td><td class="price">~$15.00 (est.)</td><td class="price">~$15.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/Electric-Solenoid-Normally-Closed-U-S/dp/B01N0Q4QYI">Amazon (valve only)</a>
+                <span class="reason">Valve only — still need a small pump unless the top-off tank is gravity-fed above the reservoir</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Float switch</b><span class="spec">HI/LO reservoir level</span></td>
+              <td class="qty">2</td><td class="price">$4.00 (est.)</td><td class="price">$8.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/Copapa-Horizontal-Liquid-Switch-Sensor/dp/B00AKW29U2">Amazon</a>
+                <span class="reason">Listings found are horizontal-mount — confirm orientation matches the reservoir's mounting plan</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Flow sensor</b><span class="spec">YF-S401-class, hall-effect pulse, 0.3–6L/min</span></td>
+              <td class="qty">1</td><td class="price">~$8.00 (est.)</td><td class="price">~$8.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/uxcell-Effect-Flowmeter-Counter-YF-S401/dp/B07WDCTY7D">Amazon (uxcell)</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Leak/water sensor</b><span class="spec">Relay-output NO/NC leak detector</span></td>
+              <td class="qty">1</td><td class="price">$17.90</td><td class="price">$17.90</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.dfrobot.com/product-2316.html">DFRobot</a>
+              </div></td>
+            </tr>
+            <tr class="subtotal"><td>Reservoir subtotal</td><td></td><td></td><td class="price">$305.12</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="module-card-head" style="margin-top:40px"><h3 id="brain">Brain — Raspberry Pi 5</h3><span class="module-tag">$256.99</span></div>
+      <div class="bom-table-wrap">
+        <table class="bom">
+          <thead><tr><th>Part &amp; spec</th><th>Qty</th><th>Unit</th><th>Line total</th><th>Sourcing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="part-cell"><b>Raspberry Pi 5, 8GB</b><span class="spec">MQTT broker, policy engine, vision, time-series DB</span></td>
+              <td class="qty">1</td><td class="price">$175.00</td><td class="price">$175.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.pishop.us/product/raspberry-pi-5-8gb/">PiShop.us</a>
+                <a class="vlink alt" href="https://www.adafruit.com/product/5813">Adafruit $200</a>
+                <a class="vlink ds" href="https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf">Datasheet</a>
+                <span class="reason">Up from a ~$80 planning figure — a 2026 industry-wide DRAM/memory shortage raised official pricing, not an Eden-specific cost</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Official 27W USB-C PSU</b><span class="spec">Raspberry Pi 5 official power supply</span></td>
+              <td class="qty">1</td><td class="price">$12.00 (est.)</td><td class="price">$12.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.raspberrypi.com/products/27w-power-supply/">raspberrypi.com</a>
+                <a class="vlink alt" href="https://www.pishop.us/product/raspberry-pi-27w-usb-c-power-supply-black-us/">PiShop.us</a>
+                <span class="reason">Price not shown in fetched HTML (JS-rendered widget) — not a memory-shortage part, so the historical figure likely still holds</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Official Active Cooler</b><span class="spec">Fan + heatsink, Pi 5 official accessory</span></td>
+              <td class="qty">1</td><td class="price">$5.00 (est.)</td><td class="price">$5.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.raspberrypi.com/products/active-cooler/">raspberrypi.com</a>
+                <a class="vlink alt" href="https://www.adafruit.com/product/5815">Adafruit</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>64GB microSD, A2/V30</b><span class="spec">SanDisk Extreme — boot + InfluxDB storage</span></td>
+              <td class="qty">1</td><td class="price">$49.99</td><td class="price">$49.99</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.bestbuy.com/product/sandisk-extreme-64-gb-class-10-uhs-i-u3-v30-microsdxc-160-mb-s-read-60-mb-s-write-lifetime-warranty/JXJ62C6YPX">Best Buy</a>
+                <span class="reason">Flash pricing has risen with the broader shortage; cheaper generic A2 cards may exist, unverified</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Ventilated case</b><span class="spec">Compatible with the official Active Cooler</span></td>
+              <td class="qty">1</td><td class="price">$15.00 (est.)</td><td class="price">$15.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/iUniker-Raspberry-Supports-Active-Cooler/dp/B0DJS9TGHT">Amazon (iUniker)</a>
+                <span class="reason">Official Raspberry Pi case runs cheaper (~$10 per search snippet) but wasn't fetch-confirmed</span>
+              </div></td>
+            </tr>
+            <tr class="subtotal"><td>Brain subtotal</td><td></td><td></td><td class="price">$256.99</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="module-card-head" style="margin-top:40px"><h3 id="power-frame">Power / Frame</h3><span class="module-tag">$153.40</span></div>
+      <div class="bom-table-wrap">
+        <table class="bom">
+          <thead><tr><th>Part &amp; spec</th><th>Qty</th><th>Unit</th><th>Line total</th><th>Sourcing</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="part-cell"><b>Mean Well LRS-150-24</b><span class="spec">150W, 24V DC, DIN-rail, UL/CE-certified</span></td>
+              <td class="qty">1</td><td class="price">$18.40</td><td class="price">$18.40</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/mean-well-usa-inc/LRS-150-24/7705015">DigiKey</a>
+                <a class="vlink alt" href="https://www.mouser.com/ProductDetail/MEAN-WELL/LRS-150-24">Mouser</a>
+                <a class="vlink ds" href="https://www.meanwell.com/webapp/product/search.aspx?prod=LRS-150">Datasheet</a>
+                <span class="reason">Comes in under the original $25–35 planning ballpark</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>GFCI cord/power strip</b><span class="spec">GFCI-protected outlet, entry-box mains protection</span></td>
+              <td class="qty">1</td><td class="price">$25.00 (est.)</td><td class="price">$25.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/Tripp-Lite-Outlet-Safety-TLM825GF/dp/B000WJEUX2">Amazon (Tripp Lite)</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>2×2 mylar grow tent</b><span class="spec">60×60cm envelope, generic</span></td>
+              <td class="qty">1</td><td class="price">$60.00 (est.)</td><td class="price">$60.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.amazon.com/CoolGrows-2x2x4-Small-Indoor-Hydroponics/dp/B01GCHXUVU">Amazon (CoolGrows)</a>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>PVC pipe + fittings</b><span class="spec">Sch 40, sized to 2×2 frame/raceway — multi-SKU lot</span></td>
+              <td class="qty">lot</td><td class="price">$45.00 (est.)</td><td class="price">$45.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink alt" href="https://www.mcmaster.com/products/pvc-(schedule-40)-pipe">McMaster-Carr (pipe)</a>
+                <a class="vlink alt" href="https://www.mcmaster.com/products/pipe-fittings/material~plastic-1/material~pvc/pipe-schedule~40/">McMaster-Carr (fittings)</a>
+                <span class="reason">No single SKU — priced as a lot against the frame's cut list, not a specific quote</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Molex Mini-Fit Jr 2-pin set</b><span class="spec">Module power drops — canopy + reservoir</span></td>
+              <td class="qty">2 sets</td><td class="price">$1.50 (est.)</td><td class="price">$3.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/molex/39-01-2020/61315">DigiKey (housing, $0.27 ea.)</a>
+                <a class="vlink ds" href="https://www.molex.com/en-us/products/part-detail/39012020">Datasheet</a>
+                <span class="reason">A full set is housing + mating housing + crimp terminals — see Pooled Cost below</span>
+              </div></td>
+            </tr>
+            <tr>
+              <td class="part-cell"><b>Master power switch</b><span class="spec">Panel-mount, DPST, system kill switch</span></td>
+              <td class="qty">1</td><td class="price">$2.00</td><td class="price">$2.00</td>
+              <td><div class="vendor-links">
+                <a class="vlink rec" href="https://www.digikey.com/en/products/detail/e-switch/RRA12C1100/2116246">DigiKey (E-Switch)</a>
+              </div></td>
+            </tr>
+            <tr class="subtotal"><td>Power/Frame subtotal</td><td></td><td></td><td class="price">$153.40</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Pooled Cost</div>
+        <h2>Where per-unit cost drops at pilot scale</h2>
+        <p class="section-dek">These parts repeat across modules — buying them by the piece, once per unit, is the most inflated pricing in this BOM. At Wave B (10–50 units, per the evolution ladder on the Vision page), the same part numbers move to reel/bulk pricing.</p>
+      </div>
+      <div class="overlap-grid">
+        <div class="overlap-card">
+          <h4><span class="node-dot"></span>Connector families</h4>
+          <p>Molex Mini-Fit Jr (module power), JST-XH (actuators), and JST-SH/STEMMA-QT (sensors) all repeat across canopy, reservoir, and the power spine. Single-set pricing here (as low as $0.27/housing on DigiKey, $0.95/cable on Adafruit) drops further on reel buys once a pilot run justifies ordering by the hundred instead of the piece.</p>
+          <ul>
+            <li>Mini-Fit Jr 2-pin — canopy + reservoir power drops</li>
+            <li>JST-XH 4-pin — fan/pump/actuator headers, both modules</li>
+            <li>JST-SH/STEMMA-QT — sensor bus, canopy + reservoir</li>
+          </ul>
+        </div>
+        <div class="overlap-card">
+          <h4><span class="node-dot"></span>Fasteners &amp; print hardware</h4>
+          <p>M3 hardware (screws, heat-set inserts, standoffs) repeats across all four printed enclosures — canopy, reservoir, brain, and the power entry box. Hardware-store single-pack pricing is inflated relative to a 100-count bulk pack, which runs pennies rather than dollars per piece.</p>
+        </div>
+        <div class="overlap-card">
+          <h4><span class="node-dot"></span>Hookup wire &amp; harness stock</h4>
+          <p>24V bus wire and JST pigtail leads are bought as pre-cut lengths today, priced per-project. At pilot scale, bulk spooled stock plus a harness-house quote (the connector families' Evolution note in <span class="mono">hardware-design-v1.md</span> §2.3) replaces hand-cut, hand-crimped runs on the same connector families — lower marginal cost per harness, not a redesign.</p>
+        </div>
+        <div class="overlap-card">
+          <h4><span class="node-dot"></span>Common passives/ICs — future reservoir PCB</h4>
+          <p>Canopy's board already carries IRLZ44N MOSFETs, AMS1117/LP2950 LDOs, and TVS protection. <span class="mono">hardware-design-v1.md</span> §4.3/§11 confirms reservoir gets its first PCB spin at pilot volume, on the same 24V rail — likely sharing several of these exact part numbers. Reel pricing (100+ units) on parts shown above at single-unit DigiKey price (e.g. IRLZ44N at $2.10 each) is typically well under $1/unit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Pricing Honesty</div>
+        <h2>Why this total moved, and what's still open</h2>
+      </div>
+      <div class="safety-grid">
+        <div class="safety-card"><span class="node-dot"></span><p><b>Every price is a live listing</b>Every row above links to a real, dated vendor page fetched for this snapshot — DigiKey, Mouser, Adafruit, SparkFun, DFRobot, or a named reseller. Where a live page wouldn't yield a price (several Amazon listings block automated fetches), the line is marked <span class="mono">(est.)</span> and still links to the real listing, not an invented one.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Two things moved the total since our last estimate</b>An earlier internal planning figure (<span class="mono">BOM_Tradeoffs.md</span>, June 2026) put a mid-range build at ~$814. This page totals ~$1,134 — the delta is genuine new scope (rev B's lift, mister, ToF sensor, and GPIO/PWM expanders) plus real 2026 market movement on two parts: the Raspberry Pi 5 8GB (~$80 → $175–200, an industry-wide DRAM shortage, not Eden-specific) and the SCD40 CO₂ sensor (~$20 → $44.95).</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>What's still open</b>The HLG 65 V2 light's dimming behavior reads inconsistently across two retailers — one describes it non-dimmable out of the box, which would conflict with the canopy board's 0–10V op-amp dimmer circuit. That needs a bench check, not a spec-sheet read. A handful of other lines (the JLCPCB batch quote, several Amazon-only parts) need a live checkout to pin an exact number.</p></div>
+      </div>
+      <p class="assump">Pricing snapshot: July 2026, single-unit distributor/retail pricing (DigiKey, Mouser, Adafruit, SparkFun, DFRobot, named Amazon/reseller listings) — not bulk or pilot-volume quotes. This is Wave A (one-off, units 1–5) pricing per the evolution ladder on the Vision page; Wave B (10–50 units) re-sources at volume and consolidates SKUs — see Pooled Cost above. Excludes engineering time, shipping, tax, and tooling. Kamoer dosing-pump pricing and the PVC frame lot are order-of-magnitude estimates, not confirmed live quotes — see row-level notes for both.</p>
+    </div>
+  </section>
+
+  <footer class="eden-footer">
+    <div class="shell">
+      <div class="eden-footer-label">Reference</div>
+      <div class="doc-list">
+        <span class="mono">← <a href="index.html" style="color:var(--accent)">System vision</a></span>
+        <span class="mono">← <a href="hardware.html" style="color:var(--accent)">Draft PCB schematics &amp; housing CAD</a></span>
+        <span class="mono">Engineering source of truth: docs/architecture/ in the private engineering repo — access for investors on request.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

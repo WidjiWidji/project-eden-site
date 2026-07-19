@@ -520,3 +520,50 @@
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 @media (max-width:900px){.two-col{grid-template-columns:1fr;} .fig img{min-width:0;}}
 .dl-note{font-size:0.9rem;color:var(--ink-muted);border-left:3px solid var(--copper-fill);padding:6px 12px;background:var(--surface-2);border-radius:0 8px 8px 0;}
+
+/* ---- BOM page ---- */
+.bom-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px;}
+@media (max-width:780px){.bom-stats{grid-template-columns:repeat(2,1fr);}}
+.bom-stat{border:1px solid var(--line);border-radius:9px;background:var(--surface);box-shadow:var(--shadow-card);padding:16px;}
+.bom-stat b{display:block;font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--ink);letter-spacing:-0.01em;}
+.bom-stat span{display:block;margin-top:4px;font-size:0.82rem;color:var(--ink-faint);}
+.bom-stat.accent b{color:var(--accent);}
+
+.vendor-filter{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px;}
+.vendor-chip{font-family:var(--font-mono);font-size:0.8rem;color:var(--ink-muted);background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;cursor:pointer;user-select:none;}
+.vendor-chip[data-active="true"]{color:var(--accent);background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent-fill) 45%,transparent);}
+
+.module-tab-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 22px;border-bottom:1px solid var(--line);padding-bottom:16px;}
+.module-tab{font-family:var(--font-display);font-weight:700;font-size:0.88rem;color:var(--ink-muted);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 16px;cursor:pointer;}
+.module-tab[data-active="true"]{color:var(--surface);background:var(--accent-fill);border-color:var(--accent-fill);}
+
+.bom-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow-card);}
+table.bom{width:100%;border-collapse:collapse;min-width:920px;font-size:0.88rem;}
+table.bom th{text-align:left;font-family:var(--font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-faint);padding:12px 14px;border-bottom:1px solid var(--line-strong);white-space:nowrap;}
+table.bom td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-muted);}
+table.bom tr:last-child td{border-bottom:none;}
+table.bom tr.subtotal td{background:var(--surface-2);font-weight:700;color:var(--ink);border-top:1px solid var(--line-strong);}
+table.bom td.part-cell b{display:block;color:var(--ink);font-weight:700;font-size:0.93rem;}
+table.bom td.part-cell span.spec{display:block;margin-top:2px;font-size:0.82rem;color:var(--ink-faint);}
+table.bom td.price{font-family:var(--font-mono);color:var(--ink);white-space:nowrap;}
+table.bom td.qty{font-family:var(--font-mono);text-align:center;}
+.vendor-links{display:flex;flex-wrap:wrap;gap:6px;}
+.vlink{font-family:var(--font-mono);font-size:0.76rem;text-decoration:none;padding:3px 9px;border-radius:6px;border:1px solid var(--line-strong);white-space:nowrap;}
+.vlink.rec{background:var(--ok-soft);color:var(--ok);border-color:color-mix(in srgb,var(--ok-fill) 40%,transparent);font-weight:700;}
+.vlink.alt{color:var(--ink-muted);background:var(--surface-2);}
+.vlink.alt:hover{color:var(--accent);}
+.vlink.ds{color:var(--copper);background:var(--copper-soft);border-color:color-mix(in srgb,var(--copper-fill) 40%,transparent);}
+.vlink[data-vendor]{display:none;}
+.vlink.rec[data-vendor]{display:inline-block;}
+.reason{display:block;margin-top:6px;font-size:0.78rem;color:var(--ink-faint);max-width:26ch;}
+
+.overlap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px;}
+@media (max-width:780px){.overlap-grid{grid-template-columns:1fr;}}
+.overlap-card{border:1px solid var(--line);border-radius:9px;background:var(--surface);padding:16px;}
+.overlap-card h4{font-family:var(--font-display);font-size:0.95rem;font-weight:700;margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+.overlap-card p{font-size:0.88rem;color:var(--ink-muted);margin:0;}
+.overlap-card ul{margin-top:8px;display:flex;flex-direction:column;gap:5px;}
+.overlap-card li{font-size:0.85rem;color:var(--ink-muted);padding-left:13px;position:relative;}
+.overlap-card li::before{content:"";position:absolute;left:0;top:0.5em;width:5px;height:5px;border-radius:50%;background:var(--copper-fill);}
+
+.assump{font-size:0.85rem;color:var(--ink-faint);margin-top:10px;}
