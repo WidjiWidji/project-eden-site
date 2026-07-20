@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Project Eden's three build tiers — Full v1, Trimmed Primary, and Budget — with per-subsystem costs and every tradeoff spelled out.">
+<title>Project Eden — Build Tiers</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body style="margin:0">
+<nav class="site-nav"><div class="shell-wide">
+  <a class="brand" href="index.html">🌿 Project Eden</a>
+  <a class="navlink" href="index.html">Vision</a>
+  <a class="navlink" href="hardware.html">Hardware</a>
+  <a class="navlink" href="bom.html">Bill of Materials</a>
+  <a class="navlink" href="tiers.html" aria-current="page">Build Tiers</a>
+</div></nav>
+
+<div class="eden-page">
+
+  <header class="hero" style="padding:56px 0 40px">
+    <div class="shell">
+      <div class="hero-eyebrow"><span class="node-dot"></span>BILL OF MATERIALS — THREE BUILD TIERS</div>
+      <h1>Three builds, one control system</h1>
+      <p class="hero-sub">Full v1 is the ratified design — unchanged, presented on <a href="hardware.html" style="color:var(--accent)">Hardware</a> and priced part-by-part with live vendor links on the <a href="bom.html" style="color:var(--accent)">Bill of Materials</a>. Trimmed Primary and Budget below are cheaper ways to build the <em>same machine</em>: every cut is named, priced, and checked against what <span class="mono">canopy-core</span> and <span class="mono">reservoir-core</span> actually consume. Nothing here removes a control loop, a safety interlock, or the camera.</p>
+      <div class="status-pill"><span class="node-dot"></span>Every tier runs the identical firmware, control logic, and safety interlocks — only the parts around them change</div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><b>$814–$940</b><span>Full v1 — spreadsheet total vs. true ratified cost</span></div>
+        <div class="hero-stat"><b>$754</b><span>Trimmed Primary — four telemetry-only cuts</span></div>
+        <div class="hero-stat"><b>≈$560</b><span>Budget — owner-supplied brain, same grow path</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="tiers">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Build Tiers</div>
+        <h2>Pick a budget, not a different machine</h2>
+        <p class="section-dek">All three tiers share the same canopy / reservoir / brain architecture, the same MQTT topic scheme, and the same rule-based policy engine. The differences are entirely in which parts sit behind that logic.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="module-card">
+          <div class="module-card-head"><h3>Full v1</h3><span class="module-tag">$814 / ~$940</span></div>
+          <ul>
+            <li>Canopy <b>$267.85</b> — ESP32-S3, OV2640 camera, SHT40, AS7341 spectral, SCD40 CO2, 2× PWM fans, fabricated 4-layer PCB</li>
+            <li>Reservoir <b>$161</b> — ESP32-C3, DFRobot pH + EC probes, 3× dosing pumps, circulation + air pumps, dual floats, flow sensor</li>
+            <li>Grow Site <b>$88</b> — 3&quot; PVC grid, LECA, uniseals</li>
+            <li>Tent + Shell <b>$178</b> — real tent, carbon filter, GFCI power</li>
+            <li>Brain <b>$119</b> — Raspberry Pi 5 8GB kit</li>
+            <li>The ratified design — this tier's presentation doesn't change; the other two are cuts <em>from</em> it, never replacements.</li>
+          </ul>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head"><h3>Trimmed Primary</h3><span class="module-tag">$754</span></div>
+          <ul>
+            <li>Cut <b>SCD40 CO2 sensor</b> — telemetry-only, no consumer in the codebase</li>
+            <li>Downgrade <b>Pi 5 8GB → 4GB</b> — the vision pipeline it's headroom for is still a stub</li>
+            <li>Defer the <b>2nd canopy fan</b> — PCB header stays populated-ready</li>
+            <li>Cut the unused <b>grow-site DS18B20</b> — already optional, feeds nothing</li>
+            <li>Every control loop, every safety interlock, and the camera are identical to Full v1</li>
+          </ul>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head"><h3>Budget</h3><span class="module-tag">≈$560</span></div>
+          <ul>
+            <li>Canopy <b>$160</b> — Seeed XIAO ESP32-S3 Sense keeps the camera, drops the fabricated PCB</li>
+            <li>Reservoir <b>$155</b> — real pH/EC/dosing stack, essentially untouched</li>
+            <li>Grow Site <b>$83</b> — 3&quot; PVC, LECA, uniseals all kept (any-crop requirement)</li>
+            <li>Tent + Shell <b>$161</b> — real tent + carbon filter kept</li>
+            <li>Brain <b>$0</b> — runs on a computer you already own</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Cost Breakdown</div>
+        <h2>Subsystem by subsystem</h2>
+        <p class="section-dek">Trimmed Primary and Budget are both cut from the $814 spreadsheet baseline below — the same arithmetic the sheet itself uses. The $940 "true ratified" figure is a separate correction layered onto Full v1 only (see note below) and isn't yet split by subsystem, so it isn't a column here.</p>
+      </div>
+
+      <div class="bom-table-wrap">
+        <table class="bom">
+          <thead><tr><th>Subsystem</th><th>Full v1 (sheet)</th><th>Trimmed Primary</th><th>Budget</th></tr></thead>
+          <tbody>
+            <tr><td class="part-cell"><b>Canopy</b></td><td class="price">$267.85</td><td class="price">$232.90</td><td class="price">$160</td></tr>
+            <tr><td class="part-cell"><b>Reservoir</b></td><td class="price">$161.00</td><td class="price">$161.00</td><td class="price">$155</td></tr>
+            <tr><td class="part-cell"><b>Grow Site</b></td><td class="price">$88.00</td><td class="price">$83.00</td><td class="price">$83</td></tr>
+            <tr><td class="part-cell"><b>Tent + Shell</b></td><td class="price">$178.00</td><td class="price">$178.00</td><td class="price">$161</td></tr>
+            <tr><td class="part-cell"><b>Brain</b></td><td class="price">$119.00</td><td class="price">$99.00</td><td class="price">$0*</td></tr>
+            <tr class="subtotal"><td>Total</td><td class="price">$813.85 ≈ $814</td><td class="price">$753.90 ≈ $754</td><td class="price">$559 ≈ $560</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="assump">* Budget Brain assumes a computer you already own runs the Mosquitto/InfluxDB/Grafana/policy stack — see the open Wi-Fi-AP-hosting caveat in the Budget section below. Full v1's $814 is the spreadsheet's own primary-pick arithmetic (<span class="mono">Project_Eden_BOM.xlsx</span>); Trimmed Primary and Budget are both cut from that same $814 baseline, not from the $940 true-ratified figure.</p>
+    </div>
+  </section>
+
+  <section class="section" id="full-v1">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Full v1 — Honesty Check</div>
+        <h2>$814 on the spreadsheet, ~$940 as actually ratified</h2>
+        <p class="section-dek"><span class="mono">Project_Eden_BOM.xlsx</span> still reflects the pre-commercial-v1 design. <span class="mono">hardware-design-v1.md</span> §9 adds hardware the sheet hasn't caught up to yet — real parts, real cost, not yet a spreadsheet row.</p>
+      </div>
+      <p class="body-text">Auto top-off pump/valve $20 · ultrasonic mister $20 · worm-gear lift motor $27.50 · limit switches $4 · DRV8871 H-bridge $6.50 · VL53L1X ToF $10 · leak sensor $5.50 · PCF8574 $4 · PCA9685 $6 · Mini-Fit Jr connectors $3 · 24V PSU/GFCI power delta $20 — <b style="color:var(--ink)">$126.50</b> not yet on the sheet. $813.85 + $126.50 ≈ <b style="color:var(--ink)">$940</b>, the real ratified number. Anyone budgeting off the spreadsheet alone is undercounting Full v1 by about that much.</p>
+      <p class="body-text">One more layer of honesty: everything on this page runs on the design spreadsheet's planning prices, so the three tiers stay comparable to each other. The <a href="bom.html" style="color:var(--accent)">Bill of Materials</a> page prices the same Full v1 design against live July-2026 vendor listings and lands at <b style="color:var(--ink)">$1,133.94</b> for canopy + reservoir + brain + power/frame (its scope excludes the grow-site subsystem). The delta is real market movement, not new scope — concentrated in the Raspberry Pi 5 8GB ($80 → $175, an industry-wide DRAM shortage) and the SCD40 CO2 sensor ($19.95 → $44.95). At live prices the cuts below get <em>bigger</em>, not smaller: the Trimmed Primary's SCD40 cut is worth $44.95 on today's listings, and the Budget tier's owner-supplied brain sidesteps the single most shortage-inflated subsystem on the live sheet ($256.99 for the Pi 5 kit).</p>
+    </div>
+  </section>
+
+  <section class="section" id="trimmed">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Trimmed Primary — $754</div>
+        <h2>Same machine, four cuts, all telemetry</h2>
+        <p class="section-dek">Every cut here is hardware with no consumer in <span class="mono">canopy-core</span> or <span class="mono">reservoir-core</span> today — checked against the actual control code, not assumed.</p>
+      </div>
+
+      <div class="safety-grid">
+        <div class="safety-card"><span class="node-dot"></span><p><b>−$19.95 — SCD40 CO2 sensor</b>The design doc calls CO2 "monitoring only, v2" — no CO2 actuator exists anywhere in the system. Re-add path: drop-in I2C part on the existing sensor bus once a v2 CO2 policy ships.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>−$20 — Pi 5 8GB → 4GB</b>The 8GB headroom is for a vision pipeline that's currently a stub. Re-add: swap the Pi when real inference lands.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>−$15 — Defer 2nd canopy fan</b>The PCB header stays populated-ready; add the fan if one fan can't overcome carbon-filter back-pressure.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>−$5 — Unused grow-site DS18B20</b>Already optional, feeds nothing.</p></div>
+      </div>
+
+      <p class="body-text" style="margin-top:22px">Optional further cut, not recommended: AS7341 → BH1750 lux sensor, −$16 → $738. v1.1 re-scopes the AS7341 to down-facing plant-health reflectance, which serves the max-automation goal — cutting it trades away a near-term capability for a one-time saving.</p>
+
+      <div class="dl-note" style="margin-top:18px">What you actually lose vs. Full v1: CO2 <i>logging</i> (not control — there is none), Pi RAM headroom, and one fan of redundancy. Every control loop, every safety interlock, every sensor those loops consume, and the camera are identical.</div>
+    </div>
+  </section>
+
+  <section class="section" id="budget">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Budget — ≈$560</div>
+        <h2>Cheapest build that still grows anything, fully automated</h2>
+        <p class="section-dek">Designed under four constraints: the camera stays, grow capability is never downgraded (any hydroponic crop, maximum harvest/quality/automation), real pH/EC stays, and the brain moves to a computer you already run.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="module-card">
+          <div class="module-card-head"><h3>Canopy</h3><span class="module-tag">$160</span></div>
+          <ul>
+            <li>Seeed XIAO ESP32-S3 Sense ($14) replaces the WROOM module + OV2640 + fabricated 4-layer PCB + passives (~$64 together) — keeps the camera and PSRAM</li>
+            <li>SHT40 kept</li>
+            <li>BH1750 lux sensor instead of AS7341</li>
+            <li>No SCD40</li>
+            <li>One fan + MOSFET/0–10V dimmer breakout modules instead of a fabricated board</li>
+            <li>HLG 65 V2 kept at $99</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card-head"><h3>Reservoir</h3><span class="module-tag">$155</span></div>
+          <ul>
+            <li>The reservoir <b>is</b> the product — essentially untouched</li>
+            <li>ADS1115, DFRobot pH + EC, DS18B20 all stay</li>
+            <li>Circulation pump, 3× dosing pumps, air pump, dual floats all stay</li>
+            <li>Only the flow sensor goes (−$6, telemetry-only)</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card-head"><h3>Grow Site</h3><span class="module-tag">$83</span></div>
+          <ul>
+            <li>3&quot; PVC grid, LECA, uniseals all kept — the any-crop requirement</li>
+            <li>Only the unused regional temp probe cut</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card-head"><h3>Tent + Shell</h3><span class="module-tag">$161</span></div>
+          <ul>
+            <li>Real tent, carbon filter, GFCI/fused power all kept</li>
+            <li>Downgrades: a relay board instead of the switching board, a 120mm circulation fan</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card-head"><h3>Brain</h3><span class="module-tag">$0</span></div>
+          <ul>
+            <li>Owner's existing computer runs the Mosquitto/InfluxDB/Grafana/policy stack</li>
+            <li>Honest caveat: v1's design has the brain hosting its own Wi-Fi AP for module pairing. On an owned computer, that machine either hosts the AP itself or pairing moves to the home LAN — a small open design question (D7), flagged, not hidden.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="body-text" style="margin-top:22px">Tradeoff vs. Full v1: loses the fabricated PCB (breakout-board wiring instead — more assembly labor, less polish, same circuits), spectral reflectance sensing (lux only), CO2 logging, flow telemetry, the 2nd fan, and the dedicated always-on Pi appliance. Keeps every control loop, every safety interlock, the camera, the full dosing stack, and the identical grow path (light, 3&quot; sites, LECA).</p>
+    </div>
+  </section>
+
+  <section class="section" id="floor-price">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Why Not $450</div>
+        <h2>The next $110 only comes out of the grow path</h2>
+      </div>
+      <p class="body-text">Below $560, the remaining savings stop being telemetry or polish and start being the plants themselves: a $60 LM301-class light board instead of the HLG 65 (−$39), 2&quot; PVC + rockwool instead of 3&quot; PVC + LECA (−$31, locks out large fruiting crops), no carbon filter (−$20, no odor control), and a camera-less MCU (−$8) — together, ≈$460. That's a leafy-greens-only machine, and it isn't what Project Eden sells. Deliberately not offered.</p>
+    </div>
+  </section>
+
+  <section class="section" id="floor">
+    <div class="shell-wide">
+      <div class="section-head">
+        <div class="eyebrow"><span class="node-dot"></span>Never-Cut Floor</div>
+        <h2>What no tier ever touches</h2>
+      </div>
+      <div class="safety-grid">
+        <div class="safety-card"><span class="node-dot"></span><p><b>Aeration &amp; circulation</b>RDWC roots die in hours without dissolved oxygen — the air pump and circulation pump are exempt from every interlock, in every tier.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Lab-grade pH/EC</b>Bad chemistry data means dosing the wrong amount of the wrong thing — never downgraded to a cheaper analog proxy.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>SHT40-class RH/temp</b>VPD is the master control variable every tier's fan/mister PID runs against.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>Dual float switches</b>High/low dry-run protection for every pump in the reservoir.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>GFCI + fusing</b>The one place every tier still touches mains.</p></div>
+        <div class="safety-card"><span class="node-dot"></span><p><b>0–10V dimmable quality light</b>The HLG 65 V2 is the yield driver — every tier keeps it.</p></div>
+      </div>
+
+      <div class="deferred-block">
+        <div class="deferred-label">False economies rejected by design</div>
+        <div class="tag-row">
+          <span class="tag">DHT22</span>
+          <span class="tag">Blurple LED panels</span>
+          <span class="tag">Native ESP32 ADC for probes</span>
+          <span class="tag">Single float switch</span>
+          <span class="tag">Panda-film tents</span>
+          <span class="tag">Breadboards near water</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="eden-footer">
+    <div class="shell">
+      <div class="eden-footer-label">Reference</div>
+      <div class="doc-list">
+        <span class="mono">← <a href="index.html" style="color:var(--accent)">System vision</a></span>
+        <span class="mono">← <a href="hardware.html" style="color:var(--accent)">Draft PCB schematics &amp; housing CAD</a></span>
+        <span class="mono">← <a href="bom.html" style="color:var(--accent)">Full v1 bill of materials — live vendor pricing</a></span>
+        <span class="mono">Engineering source of truth: docs/architecture/ in the private engineering repo — access for investors on request.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
